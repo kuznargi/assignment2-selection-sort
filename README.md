@@ -12,7 +12,7 @@ This repository implements **Selection Sort** (Student B from Pair 1: Basic Quad
 
 Theoretical Background: Selection Sort repeatedly finds the minimum element from the unsorted portion and places it at the beginning. It is stable in swaps (~n worst-case) but performs ~n(n-1)/2 comparisons always (without opts).
 
-**Author**: Nargiza, Student B (Pair 1). Partner: Student A (Insertion Sort).
+**Author**: Nargiza, Student B (Pair 1). Partner: Aibek, Student A (Insertion Sort).
 
 ## Complexity Analysis
 - **Time Complexity**:
@@ -33,7 +33,7 @@ See `docs/analysis-report.pdf` for full peer analysis of Insertion Sort.
 ### Build and Test
 ```bash
 # Clone repo
-git clone https://github.com/kuznargi/assignment2-selection-sort.git
+git clone https://github.com/yourusername/assignment2-selection-sort.git
 cd assignment2-selection-sort
 
 # Compile
@@ -42,3 +42,39 @@ mvn clean compile
 # Run unit tests (covers edges: empty, single, duplicates, sorted/reverse/nearly/random)
 mvn test
 # Expected: BUILD SUCCESS, Tests run: 8, Failures: 0
+
+# Single run (outputs CSV line)
+mvn exec:java -Dexec.mainClass="org.example.cli.BenchmarkRunner" -Dexec.args="1000 random selection"
+
+# Full benchmarks script (creates all_benchmarks.csv)
+chmod +x run_benchmarks.sh  # If using the script
+./run_benchmarks.sh
+
+```
+## Git Workflow
+
+Branches: main (releases), feature/algorithm (impl), feature/metrics (tracking), feature/testing (tests), feature/cli (bench), feature/optimization (early termination), feature/docs (readme).
+Commits: Prefix (init/feat/test/fix/docs/perf/release) + description.
+History (git log --oneline): Clean storyline, 8-10 commits.
+Tags: v1.0 (final).
+
+## Repository Structure
+assignment2-selection-sort/
+├── src/main/java/org/example/
+│   ├── algoritms/SelectionSort.java
+│   ├── metrics/PerformanceTracker.java
+│   └── cli/BenchmarkRunner.java
+├── src/test/java/org/example/algoritms/
+│   └── SelectionSortTest.java
+├── docs/
+│   ├── analysis-report.pdf
+│   └── performance-plots/  # CSV, PNG plots
+├── README.md
+└── pom.xml
+
+## Testing Requirements
+
+Correctness: Unit (edges/duplicates/sorted/reverse/nearly), property-based (random), cross (Arrays.sort).
+Performance: Scalability (10²-10⁵), distributions, memory (0 KB aux).
+Peer: Integration (compile partner's code), benchmark reproduction, opt validation.
+
