@@ -15,19 +15,18 @@ public class BenchmarkRunner {
         String size = args[0];
         String distribution = args[1];
 
-        // Базовые параметры JMH
+
         String[] jmhArgs = {
                 "-p", "size=" + size,
                 "-p", "distribution=" + distribution,
-                "-f", "1",      // 1 форк для скорости
-                "-wi", "3",     // 3 итерации разогрева
-                "-i", "5",      // 5 итераций измерений
-                "-r", "1s",     // Время на итерацию - 1 секунда
-                "-bm", "avgt",  // Режим среднего времени
-                "-tu", "us"     // Единицы - микросекунды
+                "-f", "1",
+                "-wi", "3",
+                "-i", "5",
+                "-r", "1s",
+                "-bm", "avgt",
+                "-tu", "us"
         };
 
-        // Добавляем дополнительные аргументы JMH, если они переданы
         if (args.length > 2) {
             String[] extraArgs = new String[jmhArgs.length + (args.length - 2)];
             System.arraycopy(jmhArgs, 0, extraArgs, 0, jmhArgs.length);
