@@ -46,7 +46,7 @@ mvn test
 # Single run (outputs CSV line)
 mvn exec:java -Dexec.mainClass="org.example.cli.BenchmarkRunner" -Dexec.args="1000 random selection"
 
-# Full benchmarks script (creates all_benchmarks.csv)
+# Full benchmarks script (creates cli_benchmarks.csv)
 chmod +x run_benchmarks.sh  # If using the script
 ./run_benchmarks.sh
 

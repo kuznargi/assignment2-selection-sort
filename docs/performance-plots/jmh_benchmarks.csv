@@ -1,0 +1,17 @@
+n,type,algorithm,time_ms,comparisons,swaps,array_accesses,memory_allocations,memory_used_kb,is_correct
+100,random,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"100
+100,sorted,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"100
+100,reverse,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"100
+100,nearly,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"100
+1000,random,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"1000
+1000,sorted,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"1000
+1000,reverse,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"1000
+1000,nearly,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"1000
+10000,random,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"10000
+10000,sorted,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"10000
+10000,reverse,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"10000
+10000,nearly,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"10000
+100000,random,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"100000
+100000,sorted,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"100000
+100000,reverse,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"100000
+100000,nearly,selection,"org.example.benchmarks.JMHSelectionSortBenchmark.sortBenchmark"100000

@@ -4,66 +4,71 @@ import org.example.metrics.PerformanceTracker;
 
 /**
  * Implementation of Selection Sort with early termination optimization:
- * - If in a pass minIndex == i (no swap) and the suffix [i+1..n] is sorted — break (adaptively for nearly-sorted arrays).
- * - Suffix check: O(n-i) comparisons (extra cost, but safe).
- * - Time: Worst/Avg Θ(n²), Best Ω(n log n) worst due to check, but Ω(n) for sorted arrays; Space: O(1).
- * - Tracking metrics: comparisons (including check), swaps, arrayAccesses.
+ * - If no swap is needed (minIndex == i) and the suffix [i+1..n-1] is sorted, the algorithm terminates early.
+ * - Suffix check (isSuffixSorted) adds O(n-i) comparisons but enables adaptive behavior for nearly-sorted arrays.
+ * - Time Complexity: Worst/Average O(n²), Best Ω(n) for already sorted arrays; Space Complexity: O(1).
+ * - Metrics tracked: comparisons (including suffix check), swaps, array accesses.
+ *
+ * @author Student B
  */
-
 public class SelectionSort {
     private final PerformanceTracker tracker;
 
+    /**
+     * Constructs a SelectionSort instance with a performance tracker.
+     * @param tracker The tracker for logging metrics.
+     */
     public SelectionSort(PerformanceTracker tracker) {
         this.tracker = tracker;
     }
 
     /**
-     * Sorts the array in-place.
-     * @param arr The array to be sorted (not null).
-     * @throws IllegalArgumentException If arr == null.
+     * Sorts the array in ascending order using selection sort with early termination.
+     * @param arr The array to sort (non-null, modifiable).
+     * @throws IllegalArgumentException If arr is null.
+     * @note Handles edge cases: empty or single-element arrays are returned immediately (no operations logged).
      */
     public void sort(int[] arr) {
         if (arr == null) {
             throw new IllegalArgumentException("Array cannot be null");
         }
         if (arr.length <= 1) {
-            return;
+            return; // Edge case: already "sorted", no metrics incremented
         }
 
         int n = arr.length;
         for (int i = 0; i < n - 1; i++) {
-
             int minIndex = i;
             for (int j = i + 1; j < n; j++) {
                 tracker.incrementComparisons(1);
-                tracker.incrementArrayAccesses(2);
+                tracker.incrementArrayAccesses(2); // arr[j] and arr[minIndex]
                 if (arr[j] < arr[minIndex]) {
                     minIndex = j;
                 }
             }
 
-
             if (minIndex != i) {
                 swap(arr, i, minIndex);
                 tracker.incrementSwaps(1);
-                tracker.incrementArrayAccesses(4); // 2 чтения + 2 записи в swap
-            } else {
-                if (isSuffixSorted(arr, i + 1, n)) {
-                    break;
-                }
+                tracker.incrementArrayAccesses(4); // 2 reads + 2 writes in swap
+            } else if (i < n - 2 && isSuffixSorted(arr, i + 1, n)) {
+                break; // Early termination if suffix is sorted and not last iteration
             }
         }
     }
 
     /**
-     * Checks if the suffix [start..end-1] is sorted.
-     * @return true if sorted (non-decreasing).
+     * Checks if the suffix [start..end-1] is sorted in non-decreasing order.
+     * @param arr The array to check.
+     * @param start Starting index (inclusive).
+     * @param end Ending index (exclusive).
+     * @return true if the suffix is sorted, false otherwise.
      */
     private boolean isSuffixSorted(int[] arr, int start, int end) {
-        if (start >= end - 1) return true; // 0 или 1 элемент — sorted
+        if (start >= end - 1) return true; // 0 or 1 element — always sorted
         for (int k = start + 1; k < end; k++) {
             tracker.incrementComparisons(1);
-            tracker.incrementArrayAccesses(2); // arr[k] и arr[k-1]
+            tracker.incrementArrayAccesses(2); // arr[k] and arr[k-1]
             if (arr[k] < arr[k - 1]) {
                 return false;
             }
@@ -71,6 +76,12 @@ public class SelectionSort {
         return true;
     }
 
+    /**
+     * Swaps two elements in the array.
+     * @param arr The array.
+     * @param i First index.
+     * @param j Second index.
+     */
     private void swap(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
