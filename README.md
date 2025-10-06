@@ -45,6 +45,7 @@ assignment2-selection-sort/
 ├── docs/
 │   ├── perfomance-plots/result.csv
 │   ├── perfomance-plots/*    # Plots by directories
+│   ├── Report.pdf
 ├── test/java/org/example/algorithms/SelectionSortTest.java
 └── ...
 ```
@@ -88,12 +89,11 @@ assignment2-selection-sort/
 - Cross-validation with Java's Arrays.sort ensures correctness.
 
 ### Performance Plots
-- ![Comparisons vs. n](docs/perfomance-plots/Comparisons.png)
-- ![Swaps vs. n](docs/perfomance-plots/Swaps)
-- ![Time vs. n](docs/perfomance-plots/Time.png)
-- ![Memory Usage](docs/performance-plots/Memory%20Usage.png)
-
-
+![Comparisons.png](docs/performance-plots/Comparisons.png)
+![Swaps.png](docs/performance-plots/Swaps.png)
+![Time.png](docs/performance-plots/Time.png)
+![Memory Usage.png](docs/performance-plots/Memory%20Usage.png)
+![sorting_time_usop_comparison.png](docs/performance-plots/sorting_time_usop_comparison.png)
 ---
 
 ## 3. Code Quality, Testing & Review
